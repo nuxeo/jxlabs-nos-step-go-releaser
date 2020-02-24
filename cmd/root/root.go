@@ -21,5 +21,5 @@ func Execute() error {
 }
 
 func init() {
-	rootCmd.AddCommand(pkg.NewCmdHelloWorld())
+	rootCmd.AddCommand(pkg.NewCmdGoReleaser())
 }

@@ -44,7 +44,7 @@ goreleaser --org foo
 )
 
 // NewCmdHelloWorld creates a command object for the "hello world" command
-func NewCmdHelloWorld() *cobra.Command {
+func NewCmdGoReleaser() *cobra.Command {
 	o := &options{}
 
 	cmd := &cobra.Command{
