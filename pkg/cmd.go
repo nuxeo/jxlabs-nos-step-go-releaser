@@ -1,13 +1,35 @@
 package pkg
 
 import (
+	"github.com/jenkins-x/jx/pkg/cmd/opts"
+	"github.com/jenkins-x/jx/pkg/util"
 	"github.com/spf13/cobra"
 )
 
 type options struct {
-	Cmd  *cobra.Command
-	Args []string
+	Cmd    *cobra.Command
+	Args   []string
+	Runner util.Commander
+	*opts.CommonOptions
+
+	organisation string
+	revision     string
+	branch       string
+	buildDate    string
+	goVersion    string
+	version      string
+	rootPackage  string
 }
+
+const (
+	version      = "version"
+	organisation = "organisation"
+	revision     = "revision"
+	branch       = "branch"
+	buildDate    = "build-date"
+	goVersion    = "go-version"
+	rootPackage  = "root-package"
+)
 
 var (
 	createLong = `
@@ -17,7 +39,7 @@ pipelines using Jenkins X, upon release you will get cross platform binaries upl
 
 	createExample = `
 # print hello to the terminal
-hello user
+goreleaser --org foo
 `
 )
 
@@ -26,8 +48,8 @@ func NewCmdHelloWorld() *cobra.Command {
 	o := &options{}
 
 	cmd := &cobra.Command{
-		Use:     "hello",
-		Short:   "Hello world command",
+		Use:     "goreleaser",
+		Short:   "wraps the go releaser tool getting required secrets needed to upload artifacts to GitHub",
 		Long:    createLong,
 		Example: createExample,
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,6 +57,14 @@ func NewCmdHelloWorld() *cobra.Command {
 			return o.Run()
 		},
 	}
+
+	cmd.Flags().StringVarP(&o.organisation, organisation, "", "", "the git organisation")
+	cmd.Flags().StringVarP(&o.revision, revision, "", "", "git revision")
+	cmd.Flags().StringVarP(&o.branch, branch, "", "", "git branch")
+	cmd.Flags().StringVarP(&o.buildDate, buildDate, "", "", "build date")
+	cmd.Flags().StringVarP(&o.version, version, "", "", "version")
+	cmd.Flags().StringVarP(&o.goVersion, goVersion, "", "", "go version")
+	cmd.Flags().StringVarP(&o.rootPackage, rootPackage, "", "", "root package")
 	o.Cmd = cmd
 
 	return cmd
