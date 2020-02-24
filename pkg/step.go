@@ -6,8 +6,6 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/jenkins-x/jx/pkg/log"
-
 	"github.com/jenkins-x/jx/pkg/util"
 
 	"github.com/jenkins-x/jx/pkg/cmd/clients"
@@ -112,10 +110,6 @@ func (o *options) run() (string, error) {
 	e.Stdout = o.Out
 	e.Stderr = o.Err
 	os.Setenv("PATH", util.PathWithBinary())
-	err := e.Run()
-	if err != nil {
-		log.Logger().Errorf("Error: Command failed  %s %s", o.Runner.CurrentName(), strings.Join(o.Runner.CurrentArgs(), " "))
-	}
 
 	if len(o.Runner.CurrentEnv()) > 0 {
 		m := map[string]string{}
@@ -141,7 +135,7 @@ func (o *options) run() (string, error) {
 
 	var text string
 
-	err = e.Run()
+	err := e.Run()
 	if err != nil {
 		if err != nil {
 			errors.Wrapf(err, "failed to run command")
