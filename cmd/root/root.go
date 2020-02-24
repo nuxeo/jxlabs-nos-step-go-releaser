@@ -1,13 +1,13 @@
 package root
 
 import (
-	"github.com/REPLACE_ME_ORG/REPLACE_ME_APP_NAME/pkg"
+	"github.com/jenkins-x-quickstarts-labs/step-go-releaser/pkg"
 	"github.com/spf13/cobra"
 )
 
 var (
 	rootCmd = &cobra.Command{
-		Use:   "REPLACE_ME_APP_NAME",
+		Use:   "step-go-releaser",
 		Short: "A generator for Cobra based Applications",
 		Long: `Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files

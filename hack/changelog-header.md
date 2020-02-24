@@ -1,14 +1,14 @@
 ### Linux
 
 ```shell
-curl -L https://github.com/REPLACE_ME_ORG/REPLACE_ME_APP_NAME/releases/download/v{{.Version}}/REPLACE_ME_APP_NAME-linux-amd64.tar.gz | tar xzv 
-sudo mv REPLACE_ME_APP_NAME /usr/local/bin
+curl -L https://github.com/jenkins-x-quickstarts-labs/step-go-releaser/releases/download/v{{.Version}}/step-go-releaser-linux-amd64.tar.gz | tar xzv 
+sudo mv step-go-releaser /usr/local/bin
 ```
 
 ### macOS
 
 ```shell
-curl -L  https://github.com/REPLACE_ME_ORG/REPLACE_ME_APP_NAME/releases/download/v{{.Version}}/REPLACE_ME_APP_NAME-darwin-amd64.tar.gz | tar xzv
-sudo mv REPLACE_ME_APP_NAME /usr/local/bin
+curl -L  https://github.com/jenkins-x-quickstarts-labs/step-go-releaser/releases/download/v{{.Version}}/step-go-releaser-darwin-amd64.tar.gz | tar xzv
+sudo mv step-go-releaser /usr/local/bin
 ```
 
