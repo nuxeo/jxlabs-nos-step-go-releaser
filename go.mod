@@ -1,8 +1,9 @@
-module github.com/jenkins-x-quickstarts-labs/step-go-releaser
+module github.com/jenkins-x-labs/step-go-releaser
 
 go 1.12
 
 require (
+	github.com/jenkins-x-quickstarts-labs/step-go-releaser v0.0.1 // indirect
 	github.com/jenkins-x/jx v0.0.0-20200205060623-f7c50978003a
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.5

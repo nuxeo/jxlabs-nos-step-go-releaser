@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/jenkins-x-quickstarts-labs/step-go-releaser/cmd/root"
+	"github.com/jenkins-x-labs/step-go-releaser/cmd/root"
 )
 
 // Entrypoint for the command

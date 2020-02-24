@@ -550,6 +550,8 @@ github.com/jenkins-x-labs/jx-labs v0.0.1 h1:vFgxpZfBX9w0INr8Wo0t3PUQtx+s6n6eEcYA
 github.com/jenkins-x-labs/jx-labs v0.0.1/go.mod h1:4RrCvWZJyq9GmHcv2cHRwyq1hjt6aW+i0dva8kKS6o0=
 github.com/jenkins-x-labs/trigger-pipeline v0.0.0-20200219045331-5bd571469fb0 h1:8XULtwPP1yfM+eXBZfWp1LRIh05g0LRdtSNHQIP+SNo=
 github.com/jenkins-x-labs/trigger-pipeline v0.0.0-20200219045331-5bd571469fb0/go.mod h1:rADR2fHDsSRSQzq9p9rpVzS03JGgu7n6wP2zoscIOGs=
+github.com/jenkins-x-quickstarts-labs/step-go-releaser v0.0.1 h1:+hWy2z8mNPUGG6lEX17uXMehXGjRYALh6SEwFUL5cY4=
+github.com/jenkins-x-quickstarts-labs/step-go-releaser v0.0.1/go.mod h1:n9nFzRaLfGbvZ28tvaE2XsRnpzxFcai5QY5c+6Ynbsg=
 github.com/jenkins-x/draft-repo v0.0.0-20180417100212-2f66cc518135 h1:3zy/Nvdi9V95Jfu6+W4NAJrHDeypB58FSLyzI3XfO/4=
 github.com/jenkins-x/draft-repo v0.0.0-20180417100212-2f66cc518135/go.mod h1:K/L25ViEpDx196rOZyjn433tAM5zr2F/IouK+3g+DkE=
 github.com/jenkins-x/go-scm v1.5.75 h1:TJO+IR0uctier7mhLffFLqYDB+PEpVw+4hfTr+umNqc=

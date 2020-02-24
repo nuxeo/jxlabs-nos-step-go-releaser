@@ -1,7 +1,7 @@
 package root
 
 import (
-	"github.com/jenkins-x-quickstarts-labs/step-go-releaser/pkg"
+	"github.com/jenkins-x-labs/step-go-releaser/pkg"
 	"github.com/spf13/cobra"
 )
 
