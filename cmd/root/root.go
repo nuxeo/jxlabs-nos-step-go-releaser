@@ -17,7 +17,7 @@ to quickly create a Cobra application.`,
 
 // Execute executes the root command.
 func Execute() error {
-	return rootCmd.Execute()
+	return pkg.NewCmdGoReleaser().Execute()
 }
 
 func init() {

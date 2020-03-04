@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/jenkins-x-labs/step-go-releaser/cmd/root"
+	"github.com/jenkins-x-labs/step-go-releaser/pkg"
 )
 
 // Entrypoint for the command
 func main() {
-	err := root.Execute()
+	err := pkg.NewCmdGoReleaser().Execute()
 	if err != nil {
 		os.Exit(1)
 	}

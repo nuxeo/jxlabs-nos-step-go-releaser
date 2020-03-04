@@ -1,4 +1,3 @@
-FROM scratch
-EXPOSE 8080
-ENTRYPOINT ["/step-go-releaser"]
-COPY ./build/linux /
+FROM golang:1.12
+RUN curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+COPY ./build/linux/step-go-releaser /usr/bin/step-go-releaser

@@ -33,13 +33,11 @@ const (
 
 var (
 	createLong = `
-This is a hello world quickstart for writing CLI's in Go.  This quickstart will setup automatic CI and release
-pipelines using Jenkins X, upon release you will get cross platform binaries uploaded as a GitHub release.
+wraps goreleaser so we can get the git token from a kubernetes secret 
 `
 
 	createExample = `
-# print hello to the terminal
-goreleaser --org foo
+step-go-releaser --organisation=jenkins-x-labs --revision=1b59ffc --branch=master --build-date=20200303-22:14:54 --go-version=1.12.17 --root-package=github.com/jenkins-x-labs/gsm-controller --version=0.0.17
 `
 )
 
@@ -48,7 +46,7 @@ func NewCmdGoReleaser() *cobra.Command {
 	o := &options{}
 
 	cmd := &cobra.Command{
-		Use:     "goreleaser",
+		Use:     "step-go-releaser",
 		Short:   "wraps the go releaser tool getting required secrets needed to upload artifacts to GitHub",
 		Long:    createLong,
 		Example: createExample,
