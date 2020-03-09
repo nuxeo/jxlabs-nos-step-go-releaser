@@ -1,0 +1,26 @@
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-4npmz[0m
+{"level":"warn","ts":1583744219.831913,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1583744219.8325765,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-7wkrt[0m
+{"level":"warn","ts":1583744220.8469856,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1583744220.8481944,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-jenkins-x-labs-step-go-rel-8dqdr-qkw7b[0m
+{"level":"warn","ts":1583744225.983084,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1583744227.2330549,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/jenkins-x-labs/step-go-releaser.git @ 211964662f056199fc6f06a71cbd0260ce66861a in path /workspace/source"}
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:211964662f056199fc6f06a71cbd0260ce66861a
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
+SKIP merge-pull-refs: Nothing to merge
+
+Showing logs for build [32mmeta-jenkins-x-labs-step-go-rel-8dqdr-6[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
+error: failed to load project config in dir /workspace/source: failed to validate YAML file /workspace/source/jenkins-x.yml due to yaml: line 14: mapping values are not allowed in this context
+[31m
+Pipeline failed on stage 'meta-pipeline' : container 'step-create-effective-pipeline'. The execution of the pipeline has stopped.[0m
