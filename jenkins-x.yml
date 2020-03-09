@@ -23,4 +23,4 @@ pipelineConfig:
           - command: ./promote.sh
             dir: /workspace/source
             name: promote-release
-            image: gcr.io/jenkinsxio/builder-goo
+            image: gcr.io/jenkinsxio/builder-go
