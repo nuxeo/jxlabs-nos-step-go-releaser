@@ -11,7 +11,7 @@ pipelineConfig:
         containerOptions:
           env:
           - name: GCP_SA
-              value: /secrets/gcr/credentials.json
+            value: /secrets/gcr/credentials.json
           volumeMounts:
           - name: gcr-sa
             mountPath: /secrets/gcr
