@@ -3,7 +3,7 @@ module github.com/jenkins-x-labs/step-go-releaser
 go 1.12
 
 require (
-	github.com/jenkins-x/jx v0.0.0-20200227063938-2e166962cf26
+	github.com/jenkins-x/jx v0.0.0-20200305083540-7eafabca234c
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/viper v1.6.2 // indirect
