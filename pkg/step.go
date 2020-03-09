@@ -1,7 +1,6 @@
 package pkg
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"strings"
@@ -13,11 +12,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 	"github.com/pkg/errors"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 )
 
 const (
-	githubappLabel = "jenkins.io/githubapp-owner="
-	githubPassword = "password"
+	githubappLabel             = "jenkins.io/githubapp-owner="
+	ownerAnnotation            = "jenkins.io/githubapp-owner"
+	nonGithubAppSecretSelector = "jenkins.io/kind=git,jenkins.io/service-kind=github"
+	githubPassword             = "password"
 )
 
 // Run implements the command
@@ -87,21 +89,39 @@ func (o *options) getToken() (string, error) {
 		return "", errors.Wrap(err, "failed to get a kubernetes client")
 	}
 
+	selector := githubappLabel + o.organisation
 	listOpts := metav1.ListOptions{
-		LabelSelector: githubappLabel + o.organisation,
+		LabelSelector: selector,
 	}
-	gitHubAppSecrets, err := client.CoreV1().Secrets(ns).List(listOpts)
-	if err != nil {
-		return "", errors.Wrapf(err, "failed to get secrets for organisation %s", o.organisation)
-	}
-
-	if len(gitHubAppSecrets.Items) != 1 {
-		return "", fmt.Errorf("found %v github app secrets with label oragisation %s, should be 1", len(gitHubAppSecrets.Items), o.organisation)
+	secretInterface := client.CoreV1().Secrets(ns)
+	secrets, err := secretInterface.List(listOpts)
+	if err != nil && !apierrors.IsNotFound(err) {
+		return "", errors.Wrapf(err, "failed to get secrets for selector: %s", selector)
 	}
 
-	secret := gitHubAppSecrets.Items[0]
-	token := secret.Data[githubPassword]
-	return string(token), nil
+	for _, s := range secrets.Items {
+		token := s.Data[githubPassword]
+		if len(token) > 0 {
+			return string(token), nil
+		}
+	}
+
+	// lets try find a non-github app secret
+	listOpts = metav1.ListOptions{
+		LabelSelector: nonGithubAppSecretSelector,
+	}
+
+	secrets, err = secretInterface.List(listOpts)
+	if err != nil && !apierrors.IsNotFound(err) {
+		return "", errors.Wrapf(err, "failed to get secrets for selector: %s", nonGithubAppSecretSelector)
+	}
+	for _, s := range secrets.Items {
+		token := s.Data[githubPassword]
+		if len(token) > 0 {
+			return string(token), nil
+		}
+	}
+	return "", errors.Errorf("could not find a secret for selector %s or %s", selector, nonGithubAppSecretSelector)
 }
 
 func (o *options) run() (string, error) {
