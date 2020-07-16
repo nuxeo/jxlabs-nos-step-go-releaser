@@ -126,14 +126,9 @@ darwin: ## Build for OSX
 	chmod +x build/darwin/$(NAME)
 
 .PHONY: release
-release: clean build test
+release: clean build test linux win darwin
 	git fetch origin refs/tags/v$(VERSION)
-	#jx step changelog --verbose --header-file=hack/changelog-header.md --version=$(VERSION) --rev=$(PULL_BASE_SHA) --output-markdown=changelog.md --update-release=false
-	# TODO this fails for some reason!
-	#./build/step-go-releaser --organisation=$(ORG) --revision=$(REV) --branch=$(BRANCH) --build-date=$(BUILD_DATE) --go-version=$(GO_VERSION) --root-package=$(ROOT_PACKAGE) --version=v$(VERSION)
-	#jxl goreleaser --organisation=$(ORG) --revision=$(REV) --branch=$(BRANCH) --build-date=$(BUILD_DATE) --go-version=$(GO_VERSION) --root-package=$(ROOT_PACKAGE) --version=$(VERSION)
-
-#release: clean build test linux win darwin
+	GITHUB_TOKEN=$(GITHUB_ACCESS_TOKEN) REV=$(REV) BRANCH=$(BRANCH) BUILDDATE=$(BUILD_DATE) GOVERSION=$(GO_VERSION) ROOTPACKAGE=$(ROOT_PACKAGE) VERSION=$(VERSION) goreleaser release --config=.goreleaser.yml --rm-dist
 
 .PHONY: clean
 clean: ## Clean the generated artifacts
