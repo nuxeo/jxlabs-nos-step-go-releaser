@@ -10,6 +10,8 @@ require (
 	k8s.io/apimachinery v0.17.2
 )
 
+replace github.com/jenkins-x/jx/v2 => github.com/nuxeo/jxlabs-nos-jx/v2 v2.1.1
+
 replace k8s.io/api => k8s.io/api v0.16.5
 
 replace k8s.io/metrics => k8s.io/metrics v0.0.0-20190819143841-305e1cef1ab1
