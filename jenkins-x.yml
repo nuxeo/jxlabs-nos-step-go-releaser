@@ -1,11 +1,23 @@
+dockerRegistryOwner: jxlabs-nos
 buildPack: go-cli
-dockerRegistryOwner: jenkinsxio-labs
 pipelineConfig:
   pipelines:
     release:
+      preBuild:
+        steps:
+        - name: fetch-tags
+          sh: git fetch --tags
+          image: bitnami/git
+      setVersion:
+        replace: true
+        steps:
+        - sh: jx step next-version --use-git-tag-only --tag
+          name: next-version
+          image: gcr.io/jenkinsxio/jx
+          comment: so we can retrieve the version in later steps
       promote:
         steps:
-          - command: ./promote.sh
-            dir: /workspace/source
-            name: promote-release
-            image: gcr.io/jenkinsxio/builder-go
+        - command: ./promote.sh
+          dir: /workspace/source
+          name: promote-release
+          image: gcr.io/jenkinsxio/builder-go
