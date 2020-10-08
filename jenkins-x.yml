@@ -1,22 +1,27 @@
+---
 buildPack: go-cli
 pipelineConfig:
   pipelines:
     release:
       preBuild:
         steps:
-        - name: fetch-tags
-          sh: git fetch --tags
-          image: bitnami/git
+          - name: fetch-tags
+            sh: git fetch origin
+            image: bitnami/git
       setVersion:
         replace: true
         steps:
-        - sh: jx step next-version --use-git-tag-only --tag
-          name: next-version
-          image: gcr.io/jenkinsxio/jx
-          comment: so we can retrieve the version in later steps
+          - name: git-unshallow
+            sh: 'git fetch --quiet --unshallow origin'
+          - name: git-fetch-tags
+            sh: 'git fetch --quiet'
+          - name: create-version-file
+            sh: 'jx step next-version --version=$(make version)'
+          - name: tag-version
+            sh: jx step tag --version=$(cat VERSION)
       promote:
         steps:
-        - command: ./promote.sh
-          dir: /workspace/source
-          name: promote-release
-          image: gcr.io/jenkinsxio/builder-go
+          - command: ./promote.sh
+            dir: /workspace/source
+            name: promote-release
+            image: gcr.io/jenkinsxio/builder-go
